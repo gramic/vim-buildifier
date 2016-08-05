@@ -1,0 +1,26 @@
+This file demonstrates code formatting of BUILD and WORKSPACE files.
+
+In order for these tests to work, maktaba MUST be in the same parent directory
+as codefmt. Given that that's the case, all we have to do is source the
+setupvroom.vim file, which bootstraps the codefmt plugin and configures it to
+work properly under vroom.
+
+  :source $VROOMDIR/setupvroom.vim
+
+
+It integrates with vim-repeat if available for improved repeating support. We'll
+stub that out for vroom.
+
+  :let g:repeat_calls = []
+  :function FakeRepeat(...)<CR>
+  |  call add(g:repeat_calls, a:000)<CR>
+  :endfunction
+  :call maktaba#test#Override('repeat#set', 'FakeRepeat')
+
+We'll also stub it out to not care whether certain executables are installed on
+your system.
+
+  :call codefmt#SetWhetherToPerformIsAvailableChecksForTesting(0)
+
+
+This plugin defines a :FormatCode command that can be used to reformat buffers.
