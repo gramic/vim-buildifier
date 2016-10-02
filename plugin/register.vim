@@ -32,8 +32,7 @@ function! GetBuildifierFormatter() abort
   endfunction
 
   function l:formatter.AppliesToBuffer() abort
-    "return &filetype is# 'bzl'
-    return 1
+    return &filetype is# 'bzl'
   endfunction
 
   ""
